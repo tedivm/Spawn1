@@ -13,7 +13,7 @@ The Unofficial Mobile Client for Screeps.
 
 1. [NativeScript Quick Setup](https://docs.nativescript.org/start/quick-setup).
 2. `make`
-3. `tns run ios` or `tuns run android` to compile and run.
+3. `tns run ios` or `tns run android` to compile and run.
 
 
 ## Roadmap
