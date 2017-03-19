@@ -1,0 +1,62 @@
+<Page
+  xmlns:lv="nativescript-telerik-ui/listview"
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="orders">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer
+    id="drawer"
+    drawerLocation="Left"
+    drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+      <lv:RadListView
+        id="list-view"
+        items="{{ items }}"
+        pullToRefresh="true"
+        pullToRefreshInitiated="pullToRefreshInitiated"
+        itemSwipe="true"
+        itemSwipeProgressStarted="itemSwipeProgressStarted"
+        itemSwipeProgressEnded="itemSwipeProgressEnded"
+      >
+        <lv:RadListView.listViewLayout>
+          <lv:ListViewLinearLayout scrollDirection="Vertical" />
+        </lv:RadListView.listViewLayout>
+
+        <lv:RadListView.itemTemplate>
+          <GridLayout backgroundColor="white">
+            <Label text="{{ type + ': ' + resourceType + ' ' + price }}" class="{{ active ? '' : 'line-through' }} {{ type }}" />
+          </GridLayout>
+        </lv:RadListView.itemTemplate>
+
+        <lv:RadListView.itemSwipeTemplate>
+          <GridLayout columns="100 *, 100">
+            <StackLayout col="0" backgroundColor="green">
+              <Label text="Check" color="white" />
+            </StackLayout>
+            <StackLayout col="2" backgroundColor="red">
+              <Label text="Delete" color="white" />
+            </StackLayout>
+          </GridLayout>
+        </lv:RadListView.itemSwipeTemplate>
+
+
+      </lv:RadListView>
+
+
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

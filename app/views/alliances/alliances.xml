@@ -1,0 +1,43 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:IC="nativescript-web-image-cache"
+  navigatingTo="pageLoaded"
+  id="alliances">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+
+
+      <!-- ACTUAL_CONTENT -->
+       <grid-layout columns="*">
+        <list-view items="{{ items }}" class="listview" itemTap="listViewItemTap">
+          <list-view.itemTemplate>
+            <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
+              <IC:WebImage src="{{ logo }}" col="0" />
+              <stack-layout col="1">
+                <label text="{{ abbreviation }}" class="h2" col="1"/>
+                <label text="{{ name }}" class="p" col="1" textWrap="true"/>
+              </stack-layout>
+            </grid-layout>
+          </list-view.itemTemplate>
+        </list-view>
+      </grid-layout>
+
+
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

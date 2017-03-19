@@ -1,0 +1,36 @@
+{
+  "description": "NativeScript Application",
+  "license": "MIT",
+  "readme": "NativeScript Application",
+  "repository": "<fill-your-repository-here>",
+  "nativescript": {
+    "id": "org.screepers.Spawn1",
+    "tns-android": {
+      "version": "2.5.0"
+    },
+    "tns-ios": {
+      "version": "2.5.0"
+    }
+  },
+  "dependencies": {
+    "events": "^1.1.1",
+    "https": "^1.0.0",
+    "nativescript-iqkeyboardmanager": "^1.0.1",
+    "nativescript-telerik-ui": "^1.6.1",
+    "nativescript-theme-core": "~1.0.2",
+    "nativescript-web-image-cache": "^3.4.0",
+    "request": "^2.81.0",
+    "screeps-api": "^0.2.8",
+    "tns-core-modules": "2.5.0",
+    "url": "^0.11.0",
+    "util": "^0.10.3",
+    "ws": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-traverse": "6.23.1",
+    "babel-types": "6.23.0",
+    "babylon": "6.16.1",
+    "lazy": "1.0.11",
+    "nativescript-dev-android-snapshot": "^0.*.*"
+  }
+}

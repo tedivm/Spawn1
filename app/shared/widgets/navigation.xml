@@ -1,0 +1,13 @@
+<StackLayout class="drawer-content">
+  <ScrollView orientation="vertical">
+    <StackLayout>
+      <label text="Home" tap="onTap" />
+      <label text="Messages" tap="onTap" />
+      <label text="Orders" tap="onTap" />
+      <label text="Wallet" tap="onTap" />
+      <label text="Alliances" tap="onTap" />
+      <label text="Server" tap="onTap" />
+      <label text="Logout" tap="onTap" />
+    </StackLayout>
+  </ScrollView>
+</StackLayout>

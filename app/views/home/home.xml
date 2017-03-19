@@ -1,0 +1,34 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="home">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+        <StackLayout orientation="vertical">
+          <Label text="{{ 'Username: ' + username }}" />
+          <Label text="{{ 'GCL: ' + gcl }}" />
+          <Label text="{{ 'Alliance: ' + alliance }}" onTap="loadAlliancePage"/>
+          <Label text="{{ 'Rooms: ' + roomCount }}" />
+          <Label text="{{ 'Credits: ' + money }}" />
+          <Label text="{{ 'Control Rank: ' + controlRank }}" />
+          <Label text="{{ 'Power Rank: ' + powerRank }}" />
+          <Label text="{{ 'Power Total: ' + power }}" />
+        </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

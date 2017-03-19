@@ -1,0 +1,27 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+        <StackLayout orientation="vertical">
+          <!-- ACTUAL_CONTENT -->
+        </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

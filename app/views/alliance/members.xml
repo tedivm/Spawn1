@@ -1,0 +1,46 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:IC="nativescript-web-image-cache"
+  navigatingTo="pageLoaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <ActionBar>
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="center"
+        android:horizontalAlignment="left">
+        <Image src="res://nativescript_logo" class="action-image"></Image>
+        <Label text="{{ abbreviation }}"  id="title" class="action-label"></Label>
+      </StackLayout>
+    </ActionBar>
+
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="110">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+        <stack-layout orientation="vertical">
+          <!-- ACTUAL_CONTENT -->
+
+          <list-view items="{{ memberObjects }}" class="listview" itemTap="listViewItemTap" isUserInteractionEnabled="false">
+            <list-view.itemTemplate let-item="item">
+                <stack-layout col="1">
+                  <Label text="{{ name }}" class="p" col="1" textWrap="true"/>
+                </stack-layout>
+            </list-view.itemTemplate>
+          </list-view>
+
+
+        </stack-layout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

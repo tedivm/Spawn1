@@ -1,0 +1,85 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <ActionBar>
+      <StackLayout orientation="horizontal"
+        ios:horizontalAlignment="center"
+        android:horizontalAlignment="left">
+        <Label text="{{ recipient }}"  id="title" class="action-label"></Label>
+      </StackLayout>
+
+      <ActionItem tap="composeMessage"
+        ios.systemIcon="7"
+        ios.position="right"
+        text="Compose"
+        android.systemIcon="ic_menu_compose"
+        android.position="popup"/>
+
+    </ActionBar>
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+
+      <StackLayout orientation="vertical">
+        <grid-layout columns="*">
+         <list-view
+           id="conversation_list"
+           items="{{ messages }}"
+           class="listview"
+           separatorColor="transparent"
+           itemTap="listViewItemTap"
+           itemTemplateSelector="itemTemplateSelector">
+           <ListView.itemTemplates>
+
+             <template key="them">
+               <GridLayout columns="*" rows="auto, 40" class="msg them">
+                 <StackLayout orientation="horizontal">
+                   <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
+                   <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top"/>
+                 </StackLayout>
+                 <Label class="msg_timestamp" text="{{ date }}" verticalAlignment="top" row="1" colSpan="2" />
+               </GridLayout>
+             </template>
+
+             <template key="me">
+               <GridLayout columns="*" rows="auto, 40" class="msg me">
+                 <StackLayout orientation="horizontal" horizontalAlignment="right">
+                   <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top" />
+                   <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
+                 </StackLayout>
+                 <Label class="msg_timestamp" text="{{ date }}" verticalAlignment="top" row="1" />
+               </GridLayout>
+             </template>
+
+           </ListView.itemTemplates>
+         </list-view>
+
+       </grid-layout>
+
+       <grid-layout row="1" columns="1">
+           <TextField hint="Enter message ....." row="1" text=""></TextField>
+           <Button row="1" col="1" text="Send" onTap="addMessage"></Button>
+       </grid-layout>
+
+
+     </StackLayout>
+
+
+
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

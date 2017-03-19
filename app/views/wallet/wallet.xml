@@ -1,0 +1,50 @@
+<Page
+  xmlns:lv="nativescript-telerik-ui/listview"
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="orders">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer
+    id="drawer"
+    drawerLocation="Left"
+    drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+      <lv:RadListView
+        id="list-view"
+        items="{{ items }}"
+        row="0"
+        pullToRefresh="true"
+        pullToRefreshInitiated="pullToRefreshInitiated"
+        loadOnDemandMode="Manual"
+        loadMoreDataRequested="onLoadMoreItemsRequested"
+      >
+        <lv:RadListView.listViewLayout>
+          <lv:ListViewLinearLayout scrollDirection="Vertical" />
+        </lv:RadListView.listViewLayout>
+
+        <lv:RadListView.itemTemplate>
+          <GridLayout backgroundColor="white">
+            <Label text="{{ tick + ': ' + balance  }}" class="{{ direction }}" />
+          </GridLayout>
+        </lv:RadListView.itemTemplate>
+
+      </lv:RadListView>
+
+
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

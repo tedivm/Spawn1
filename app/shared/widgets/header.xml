@@ -1,0 +1,14 @@
+<ActionBar>
+  <android>
+    <NavigationButton text="Menu" tap="toggleDrawer" />
+  </android>
+  <ios>
+    <ActionItem text="Menu" ios.position="left" tap="toggleDrawer" />
+  </ios>
+  <StackLayout orientation="horizontal"
+    ios:horizontalAlignment="center"
+    android:horizontalAlignment="left">
+    <Image src="res://nativescript_logo" class="action-image"></Image>
+    <Label text="Spawn1"  id="title" class="action-label"></Label>
+  </StackLayout>
+</ActionBar>

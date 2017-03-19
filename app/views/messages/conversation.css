@@ -1,0 +1,52 @@
+ListView {
+  separator-color: transparent;
+}
+
+.p {
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+
+.msg {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10;
+}
+
+.me .msg_text {
+    background-color: #30A9FF;
+    color: white;
+    padding: 8px;
+    margin-left: 40px;
+    border-radius: 15;
+
+}
+
+.them .msg_text {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 7px;
+    border-radius: 15;
+    margin-right: 40px;
+}
+
+.authorimg {
+    margin: 0px 5px 5px 5px;
+    width: 30;
+    height: 30;
+    border-radius: 15;
+}
+
+.them .msg_timestamp {
+    color: gray;
+    font-size: 11px;
+    margin-left: 40px;
+}
+
+.me .msg_timestamp {
+    color: gray;
+    font-size: 11px;
+    margin-right: 40px;
+    text-align: right;
+}

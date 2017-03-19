@@ -1,0 +1,36 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="server">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+      <StackLayout>
+        <ScrollView orientation="vertical">
+          <!-- ACTUAL_CONTENT -->
+          <StackLayout>
+            <Image src="http://status.screeps.com/graph/10m.png" />
+            <Image src="http://status.screeps.com/graph/1h.png" />
+            <Image src="http://status.screeps.com/graph/6h.png" />
+            <Image src="http://status.screeps.com/graph/24h.png" />
+            <Image src="http://status.screeps.com/graph/7d.png" />
+          </StackLayout>
+        </ScrollView>
+      </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

@@ -1,0 +1,45 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+
+
+      <!-- ACTUAL_CONTENT -->
+       <grid-layout columns="*">
+        <list-view items="{{ conversations }}" class="listview" itemTap="listViewItemTap">
+          <list-view.itemTemplate>
+            <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
+              <!--<IC:WebImage src="" col="0" />-->
+              <stack-layout col="1">
+                <label text="{{ rusername }}" class="h2" col="1"/>
+                <label text="{{ text }}" class="p" col="1" textWrap="true"/>
+              </stack-layout>
+            </grid-layout>
+          </list-view.itemTemplate>
+        </list-view>
+      </grid-layout>
+
+
+
+
+
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>
