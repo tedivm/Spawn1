@@ -249,24 +249,6 @@ navigation-button {
 .switch-dark {
   background-color: #243044; }
 
-.background-color-light {
-  background-color: #ffffff; }
-
-.background-color-accent {
-  background-color: #FF404B; }
-
-.background-color-dark {
-  background-color: #243044; }
-
-.color-light {
-  color: black; }
-
-.color-accent {
-  color: #FF404B; }
-
-.color-dark {
-  color: #243044; }
-
 .slider-light {
   background-color: #ffffff; }
 
@@ -275,24 +257,6 @@ navigation-button {
 
 .slider-dark {
   background-color: #243044; }
-
-.background-color-light {
-  background-color: #ffffff; }
-
-.background-color-accent {
-  background-color: #FF404B; }
-
-.background-color-dark {
-  background-color: #243044; }
-
-.color-light {
-  color: black; }
-
-.color-accent {
-  color: #FF404B; }
-
-.color-dark {
-  color: #243044; }
 
 .segmented-bar {
   height: 50; }
@@ -344,4 +308,8 @@ textfield {
   border-width: 1;
   border-color: red; }
 
-
+.datetime {
+  font-style: italic;
+  font-size: 10;
+  margin: 0 0 10 0;
+}

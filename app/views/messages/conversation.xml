@@ -39,7 +39,7 @@
                    <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
                    <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top"/>
                  </StackLayout>
-                 <Label class="msg_timestamp" text="{{ date }}" verticalAlignment="top" row="1" colSpan="2" />
+                 <Label class="msg_timestamp" text="{{ date_locale }}" verticalAlignment="top" row="1" colSpan="2" />
                </GridLayout>
              </template>
 
@@ -49,14 +49,14 @@
                    <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top" />
                    <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
                  </StackLayout>
-                 <Label class="msg_timestamp" text="{{ date }}" verticalAlignment="top" row="1" />
+                 <Label class="msg_timestamp" text="{{ date_locale }}" verticalAlignment="top" row="1" />
                </GridLayout>
              </template>
 
            </ListView.itemTemplates>
          </list-view>
 
-         <TextField hint="Enter message ....." row="1" col="0" text="" id="message_input"></TextField>
+         <TextField hint="Enter message ....." row="1" col="0" text="" id="message_input" textWrap="true"></TextField>
          <Button row="1" col="1" text="Send" onTap="addMessage" horizontalAlignment="right"></Button>
 
 

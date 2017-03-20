@@ -31,13 +31,13 @@
 
       <!-- ACTUAL_CONTENT -->
        <grid-layout columns="*">
-        <list-view items="{{ conversations }}" class="listview" itemTap="listViewItemTap">
+        <list-view items="{{ conversations }}" class="listview {{ unread ? 'unread' : 'read' }} {{ type == 'in' ? 'them' : 'me' }}" itemTap="listViewItemTap">
           <list-view.itemTemplate>
             <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
               <!--<IC:WebImage src="" col="0" />-->
-              <stack-layout col="1">
-                <label text="{{ rusername }}" class="h2" col="1"/>
-                <label text="{{ text }}" class="p" col="1" textWrap="true"/>
+              <stack-layout col="1" rows="auto">
+                <label text="{{ rusername }}" class="h2" row="0" col="1"/><label text="{{ date_locale }}" class="datetime" row="0" col="2"/>
+                <label text="{{ text }}" class="p" row="1" col="1" textWrap="true"/>
               </stack-layout>
             </grid-layout>
           </list-view.itemTemplate>

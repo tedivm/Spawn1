@@ -41,6 +41,8 @@ function loadMessages () {
     .then(function(){
       for(var conversation of data['messages']) {
         conversation['message']['rusername'] = username_mapping[conversation['message']['respondent']]
+        var date = new Date(conversation['message']['date']);
+        conversation['message']['date_locale'] = date.toLocaleString()
       }
       return data
     })
@@ -115,6 +117,7 @@ exports.toggleDrawer = function() {
 };
 
 exports.listViewItemTap = function (args) {
+  var item = items.getItem(args.index);
   var pageData = new Observable();
   pageData.recipient = item.rusername
   pageData.respondent = item.respondent
