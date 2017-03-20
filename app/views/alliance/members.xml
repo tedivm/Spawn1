@@ -27,7 +27,7 @@
           <list-view items="{{ memberObjects }}" class="listview" itemTap="listViewItemTap" isUserInteractionEnabled="false">
             <list-view.itemTemplate let-item="item">
                 <stack-layout col="1">
-                  <Label text="{{ name }}" class="p" col="1" textWrap="true"/>
+                  <Label text="{{ name }}" class="" col="1" textWrap="true"/>
                 </stack-layout>
             </list-view.itemTemplate>
           </list-view>
