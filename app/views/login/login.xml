@@ -1,8 +1,8 @@
 <Page loaded="loaded" actionBarHidden="false">
   <ActivityIndicator id="ActivityIndicator" visibility="{{ activity }}" busy="{{ activity }}" />
   <StackLayout orientation="vertical">
-    <TextField id="username" hint="Username" keyboardType="username" autocorrect="false" autocapitalizationType="none" />
-    <TextField id="password" hint="Password" secure="true" />
+    <TextField id="username" hint="Screeps Username" keyboardType="username" autocorrect="false" autocapitalizationType="none" />
+    <TextField id="password" hint="Screeps Password" secure="true" />
     <Button text="Sign in" tap="signIn" />
   </StackLayout>
 </Page>

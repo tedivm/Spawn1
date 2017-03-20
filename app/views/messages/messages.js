@@ -1,7 +1,9 @@
 var League =    require('../../services/league.js')
 var ScreepsAPI = require('../../services/screeps.js')
 var Session =    require('../../services/session.js')
+var dialogs = require("ui/dialogs");
 var frame = require("ui/frame");
+var timer = require("timer");
 
 exports.onTap = require("../../shared/navtools.js").onTap
 
@@ -16,6 +18,7 @@ var pageData = new Observable();
 
 var page;
 var drawer;
+var conversationTimerID = false
 
 
 function loadMessages () {
@@ -69,14 +72,49 @@ exports.pageLoaded = function(args) {
   page.bindingContext = pageData;
   loadMessages()
   pageData.set("conversations", items);
+  conversationTimerID = timer.setInterval(function(){
+    loadMessages()
+  }, (1000 * 45))
 };
+
+exports.composeMessage = function (args) {
+
+  dialogs.prompt({
+    title: "Compose Message",
+    message: "Select User",
+    okButtonText: "Ok",
+    cancelButtonText: "Cancel",
+    neutralButtonText: false,
+    defaultText: "",
+    inputType: dialogs.inputType.text
+  })
+  .then(function (r) {
+    return r.text
+  })
+  .then(function(username){
+    return ScreepsAPI.userdata_from_username(username)
+  })
+  .then(function(data){
+    var pageData = new Observable();
+    pageData.recipient = data['user']['username']
+    pageData.respondent = data['user']['_id']
+    pageData.messages = []
+    frame.topmost().navigate({
+      moduleName: "views/messages/conversation",
+      bindingContext: pageData
+    })
+  })
+  .catch(function(err){
+    console.log(err.message)
+    console.log(err.stack)
+  })
+}
 
 exports.toggleDrawer = function() {
   drawer.toggleDrawerState();
 };
 
 exports.listViewItemTap = function (args) {
-  var item = items.getItem(args.index);
   var pageData = new Observable();
   pageData.recipient = item.rusername
   pageData.respondent = item.respondent
@@ -85,4 +123,11 @@ exports.listViewItemTap = function (args) {
     moduleName: "views/messages/conversation",
     bindingContext: pageData
   })
+}
+
+exports.pageUnloaded = function (args) {
+  if(conversationTimerID !== false) {
+    timer.clearInterval(conversationTimerID)
+    conversationTimerID = false
+  }
 }

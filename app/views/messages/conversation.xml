@@ -2,6 +2,7 @@
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   navigatingTo="pageLoaded"
+  unloaded="pageUnloaded"
   id="VIEWNAME">
 
   <Page.actionBar>
@@ -11,14 +12,6 @@
         android:horizontalAlignment="left">
         <Label text="{{ recipient }}"  id="title" class="action-label"></Label>
       </StackLayout>
-
-      <ActionItem tap="composeMessage"
-        ios.systemIcon="7"
-        ios.position="right"
-        text="Compose"
-        android.systemIcon="ic_menu_compose"
-        android.position="popup"/>
-
     </ActionBar>
   </Page.actionBar>
 
@@ -28,14 +21,16 @@
     <drawer:RadSideDrawer.mainContent>
 
       <StackLayout orientation="vertical">
-        <grid-layout columns="*">
+        <grid-layout columns="*" rows="*,auto">
          <list-view
+           row="0"
+           column="0"
            id="conversation_list"
            items="{{ messages }}"
            class="listview"
            separatorColor="transparent"
-           itemTap="listViewItemTap"
            itemTemplateSelector="itemTemplateSelector">
+
            <ListView.itemTemplates>
 
              <template key="them">
@@ -61,13 +56,11 @@
            </ListView.itemTemplates>
          </list-view>
 
-       </grid-layout>
+         <TextField hint="Enter message ....." row="1" col="0" text="" id="message_input"></TextField>
+         <Button row="1" col="1" text="Send" onTap="addMessage" horizontalAlignment="right"></Button>
 
-       <grid-layout row="1" columns="1">
-           <TextField hint="Enter message ....." row="1" text=""></TextField>
-           <Button row="1" col="1" text="Send" onTap="addMessage"></Button>
-       </grid-layout>
 
+       </grid-layout>
 
      </StackLayout>
 

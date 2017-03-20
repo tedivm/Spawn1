@@ -67,11 +67,12 @@ are currently functional, although they may need some design help.
   * Transaction Detail Page
 
 
-### Messenger
+### Messenger ✓
 
   * Index ✓
   * Conversation Page ✓
-  * New Conversation
+  * Reply to conversation ✓
+  * New Conversation ✓
 
 
 ### Console

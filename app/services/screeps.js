@@ -78,6 +78,10 @@ class ScreepsAPI {
   }
 
   post(endpoint, args) {
+
+    console.log(endpoint)
+    console.log(JSON.stringify(args))
+
     var formData = new FormData();
     var keys = Object.keys(args)
     for(var index of keys) {
@@ -139,6 +143,10 @@ class ScreepsAPI {
     return this.get('user/messages/list', {'respondent': respondent})
   }
 
+  messages_send(respondent, message) {
+    return this.post('user/messages/send', {'respondent': respondent, 'text': message})
+  }
+
   userdata_from_id(id) {
     if(!this.id_user_map) {
       this.id_user_map = {}
@@ -151,6 +159,23 @@ class ScreepsAPI {
     return this.user_find({'id':id})
     .then(function(data){
       that.id_user_map[id] = data
+      return data
+    })
+  }
+
+
+  userdata_from_username(username) {
+    if(!this.user_id_map) {
+      this.user_id_map = {}
+    }
+
+    if(!!this.user_id_map[username]) {
+      return Promise.resolve(this.user_id_map[username])
+    }
+    var that = this
+    return this.user_find({'username':username})
+    .then(function(data){
+      that.user_id_map[username] = data
       return data
     })
   }
