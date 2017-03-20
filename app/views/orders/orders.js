@@ -22,6 +22,12 @@ function loadOrders () {
     console.log('market orders loaded')
     items.length = 0
     for(var order of data['list']) {
+      // Subscription tokens will need to be excluded until the layout
+      // templates are updated.
+      if(!order['roomName']) {
+        continue
+      }
+
       items.push(order)
     }
     return Promise.resolve(true)
@@ -72,15 +78,12 @@ exports.itemSwipeProgressEnded = function(args) {
     // @todo ask for confirmation and then delete it
     dialogs.confirm("Are you sure you want to cancel this order?")
     .then(function (result) {
-      // Delete Order
-      items.splice(args.itemIndex, 1);
-      ScreepsAPI.user_console('Game.market.cancelOrder("' + item['_id'] + '")')
-      return result
-    })
-    .then(function(result){
       if(result) {
-        return loadOrders()
+        // Delete Order
+        items.splice(args.itemIndex, 1);
+        ScreepsAPI.user_console('Game.market.cancelOrder("' + item['_id'] + '")')
       }
+      return result
     })
   }
 };

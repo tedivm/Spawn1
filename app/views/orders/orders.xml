@@ -31,13 +31,13 @@
 
         <lv:RadListView.itemTemplate>
           <GridLayout backgroundColor="white">
-            <Label text="{{ type + ': ' + resourceType + ' ' + price }}" class="{{ active ? '' : 'line-through' }} {{ type }}" />
+            <Label text="{{ roomName + ' ' + type + 'ing ' + remainingAmount + ' ' + resourceType + ' at ' + price }}" class="{{ active ? '' : 'line-through' }} {{ type }}" />
           </GridLayout>
         </lv:RadListView.itemTemplate>
 
         <lv:RadListView.itemSwipeTemplate>
           <GridLayout columns="100 *, 100">
-            <StackLayout col="0" backgroundColor="green">
+            <StackLayout col="0" backgroundColor="green" visibility="collapsed">
               <Label text="Check" color="white" />
             </StackLayout>
             <StackLayout col="2" backgroundColor="red">
