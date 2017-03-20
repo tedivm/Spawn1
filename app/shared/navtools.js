@@ -11,10 +11,8 @@ exports.onTap = function (args) {
     linkedPageName = 'login'
   }
 
-  if(currentPage.id != linkedPageName) {
-    frame.topmost().navigate({
-      'moduleName': "views/" + linkedPageName + "/" + linkedPageName,
-      'clearHistory': true
-    });
-  }
+  frame.topmost().navigate({
+    'moduleName': "views/" + linkedPageName + "/" + linkedPageName,
+    'clearHistory': true
+  });
 }
