@@ -6,6 +6,8 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 all: install
 
+refresh: clean install
+
 install:
 	tns install
 

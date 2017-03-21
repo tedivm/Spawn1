@@ -1,4 +1,5 @@
 var applicationModule = require("application");
+require("nativescript-nodeify");
 require("./services/league.js")
 
 var imageCache = require("nativescript-web-image-cache");
