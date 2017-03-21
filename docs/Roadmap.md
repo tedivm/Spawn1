@@ -19,6 +19,7 @@ are currently functional, although they may need some design help.
 
 ### Overview (home)
 
+  * Formatting
   * Username ✓
   * Badge
   * Credits ✓
@@ -76,6 +77,14 @@ are currently functional, although they may need some design help.
 
 
 ### Console
+
+  * Read console results.
+
+  * Submit console commands.
+
+  * Silence screeps-stats.
+
+  * Add "interactive" mode that suppresses `log`.
 
   * React to application state.
     * suspend/exit - kill websockets.
