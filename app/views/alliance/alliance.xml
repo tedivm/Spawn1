@@ -25,9 +25,9 @@
           <StackLayout orientation="vertical">
             <!-- ACTUAL_CONTENT -->
             <IC:WebImage src="{{ logo }}"/>
-            <Label text="{{ 'Name: ' + name }}" textWrap="true" />
+            <Label text="{{ name }}" textWrap="true" />
             <Label text="{{ memberCount + ' members' }}" onTap='loadMemberPage'/>
-            <Label text="{{ 'Slack Channel: #' + slack_channel }}" visibility="{{ !!slack_channel ? 'visible' : 'collapsed' }}" textWrap="true" onTap='loadSlack'/>
+            <Label text="{{ 'Slack: #' + slack_channel }}" visibility="{{ !!slack_channel ? 'visible' : 'collapsed' }}" textWrap="true" onTap='loadSlack'/>
           </StackLayout>
         </ScrollView>
       </StackLayout>
