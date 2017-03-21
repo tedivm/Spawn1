@@ -24,7 +24,7 @@
         <stack-layout orientation="vertical">
           <!-- ACTUAL_CONTENT -->
 
-          <list-view items="{{ memberObjects }}" class="listview" itemTap="listViewItemTap" isUserInteractionEnabled="false">
+          <list-view items="{{ memberObjects }}" class="listview" >
             <list-view.itemTemplate let-item="item">
                 <stack-layout col="1">
                   <Label text="{{ name }}" class="" col="1" textWrap="true"/>
