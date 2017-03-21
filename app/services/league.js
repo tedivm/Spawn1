@@ -1,9 +1,19 @@
+var timer = require("timer");
 
 class League {
   constructor() {
     this.users = {}
     this.alliances = {}
     this.loadAllianceData()
+
+    var that = this
+
+    // The server updates stats every 6 hours, so update the docs every
+    // 6.1 hours to make sure it gets new data.
+    timer.setInterval(function(){
+      that.loadAllianceData()
+    }, (1000 * 60 * 6.1))
+
   }
 
   loadAllianceData() {
@@ -16,7 +26,10 @@ class League {
       for(var alliance in that.alliances) {
 
         if(that.alliances[alliance]['slack_channel']) {
-          that.alliances[alliance]['slackurl'] = 'slack://channel?id=' + that.alliances[alliance]['slack_channel'] + '&team=screeeps'
+          that.alliances[alliance]['slackurl'] = 'slack://channel?team=T0HJCPP9T'
+          if(that.alliances[alliance]['slack_channelid']) {
+            that.alliances[alliance]['slackurl'] += '&id=' + that.alliances[alliance]['slack_channelid']
+          }
         }
 
         if(that.alliances[alliance]['logo']) {
@@ -27,6 +40,13 @@ class League {
 
         that.alliances[alliance].memberCount = that.alliances[alliance].members.length
         that.alliances[alliance].memberObjects = []
+
+        that.alliances[alliance].members.sort(function(a,b){
+          var textA = a.toUpperCase();
+          var textB = b.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
+
         for(var user of that.alliances[alliance].members) {
           that.alliances[alliance].memberObjects.push({'name':user})
           that.users[user] = alliance
