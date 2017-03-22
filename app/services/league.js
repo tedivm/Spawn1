@@ -1,3 +1,4 @@
+var applicationSettings = require("application-settings");
 var timer = require("timer");
 
 class League {
@@ -5,21 +6,29 @@ class League {
     this.users = {}
     this.alliances = {}
     this.loadAllianceData()
-
     var that = this
 
-    // The server updates stats every 6 hours, so update the docs every
-    // 6.1 hours to make sure it gets new data.
+    // Update every 30 minutes
     timer.setInterval(function(){
       that.loadAllianceData()
-    }, (1000 * 60 * 6.1))
-
+    }, (1000 * 60 * 30))
   }
 
   loadAllianceData() {
+    // Load from application settings if it's available. This way it's possible
+    // to browser alliance data without an internet connection.
+    this.alliances = JSON.parse(applicationSettings.getString('league_alliance_data', '{}'))
+    this.users = JSON.parse(applicationSettings.getString('league_user_data', '{}'))
+
+    console.log('Loading alliance data from http://www.leagueofautomatednations.com/alliances.js')
     var that = this
     return fetch("http://www.leagueofautomatednations.com/alliances.js")
-    .then(response => { return response.json(); })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error()
+      }
+      return response.json()
+    })
     .then(function (r) {
       that.alliances = r
       that.users = {}
@@ -52,6 +61,11 @@ class League {
           that.users[user] = alliance
         }
       }
+
+
+      applicationSettings.setString('league_alliance_data', JSON.stringify(that.alliances))
+      applicationSettings.setString('league_user_data', JSON.stringify(that.users))
+
     })
     .catch(function(err){
       console.log(err.message)
