@@ -2,9 +2,8 @@ var ScreepsAPI = require('../../services/screeps.js')
 var Session =    require('../../services/session.js')
 var League =    require('../../services/league.js')
 var frame = require("ui/frame");
-//exports.onTap
+
 exports.onTap = require("../../shared/navtools.js").onTap
-//console.dump(navigation)
 
 var page;
 var drawer;
@@ -23,8 +22,10 @@ exports.toggleDrawer = function() {
 
 
 exports.loadAlliancePage = function () {
+  var new_context = League.getAlliance(Session.userdata.alliance)
+  new_context.delayedReload = true
   frame.topmost().navigate({
     moduleName: "views/alliance/alliance",
-    bindingContext: League.getAlliance(Session.userdata.alliance)
+    bindingContext: new_context
   })
 }
