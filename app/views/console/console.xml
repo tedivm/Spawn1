@@ -1,0 +1,65 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  navigatingFrom="pageUnloaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+        <StackLayout orientation="vertical">
+
+          <!-- ACTUAL_CONTENT -->
+<!--
+          <grid-layout columns="*" rows="*,auto">
+           <list-view
+             row="0"
+             column="0"
+             id="console_list"
+             items="{{ messages }}"
+             class="listview console"
+             separatorColor="transparent"
+             itemTemplateSelector="itemTemplateSelector">
+
+             <ListView.itemTemplates>
+
+               <template key="console">
+                 <Label text="{{ text }}" class="console_output" textWrap="true" verticalAlignment="top"/>
+               </template>
+
+               <template key="error">
+                 <Label text="{{ text }}" class="console_error" textWrap="true" verticalAlignment="top"/>
+               </template>
+
+             </ListView.itemTemplates>
+           </list-view>
+
+           <TextField hint="Enter message ....." row="1" col="0" text="" id="message_input" textWrap="true"></TextField>
+           <Button row="1" col="1" text="Send" onTap="addMessage" horizontalAlignment="right"></Button>
+
+
+         </grid-layout>
+-->
+
+        <Label text="console!" />
+
+
+
+
+        </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>
