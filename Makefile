@@ -9,7 +9,7 @@ all: install
 refresh: clean install
 
 install:
-	tns install
+	yes "" | tns install
 
 build: build_android build_ios
 
@@ -25,7 +25,12 @@ run_android:
 run_ios:
 	tns run ios
 
-clean: clean_dependencies clean_android clean_ios
+clean: clean_dependencies clean_platforms
+
+clean_platforms:
+	if [ -d $(ROOT_DIR)/platforms ]; then \
+		rm -rf $(ROOT_DIR)/platforms; \
+	fi;
 
 clean_android:
 	tns platform remove android || true
