@@ -16,36 +16,26 @@
         <StackLayout orientation="vertical">
 
           <!-- ACTUAL_CONTENT -->
-<!--
+
           <grid-layout columns="*" rows="*,auto">
-           <list-view
+           <ListView
              row="0"
              column="0"
              id="console_list"
              items="{{ messages }}"
-             class="listview console"
-             separatorColor="transparent"
-             itemTemplateSelector="itemTemplateSelector">
+             class="listview console console_background"
+             separatorColor="#2b2b2b"
+             >
+             <ListView.itemTemplate>
+               <HtmlView html="{{ message }}" class="console_output {{ type }}" textWrap="true" verticalAlignment="top"/>
+             </ListView.itemTemplate>
+           </ListView>
 
-             <ListView.itemTemplates>
-
-               <template key="console">
-                 <Label text="{{ text }}" class="console_output" textWrap="true" verticalAlignment="top"/>
-               </template>
-
-               <template key="error">
-                 <Label text="{{ text }}" class="console_error" textWrap="true" verticalAlignment="top"/>
-               </template>
-
-             </ListView.itemTemplates>
-           </list-view>
-
-           <TextField hint="Enter message ....." row="1" col="0" text="" id="message_input" textWrap="true"></TextField>
-           <Button row="1" col="1" text="Send" onTap="addMessage" horizontalAlignment="right"></Button>
+           <TextField hint="" class="console_background" row="1" col="0" text="" id="message_input" textWrap="true"></TextField>
+           <Button row="1" class="console_background" col="1" text="Send" onTap="sendConsoleCommand" horizontalAlignment="right"></Button>
 
 
          </grid-layout>
--->
 
         <Label text="console!" />
 

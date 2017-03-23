@@ -1,0 +1,11 @@
+Page {
+    background-color: #2b2b2b;
+}
+.console_background {
+  background-color: #2b2b2b;
+  color: white
+}
+.console_output {
+    background-color: #2b2b2b;
+    font-size: 12;
+}
