@@ -262,7 +262,9 @@ class ScreepsSocket {
       if (message[0] == '[') {
         var data = JSON.parse(message)
       } else {
-        var data = message
+        // emulate normal responses but with blank subscription key
+        // this will mean only raw handlers will run on message
+        var data = ['', message]
       }
 
       var handlers = []
@@ -276,13 +278,17 @@ class ScreepsSocket {
         case data[0].endsWith('money'):
           var type = 'money'
           break;
+        default:
+          var type = 'raw'
+          break;
       }
 
-      if(that.handlers['type']) {
-        handlers = that.handlers['type']
+      console.log('websocket handler type: ' + type)
+      if(that.handlers[type]) {
+        handlers = that.handlers[type]
       }
 
-      if(that.handlers['raw']) {
+      if(that.handlers['*']) {
         handlers = handlers.concat(that.handlers[raw])
       }
 
