@@ -36,6 +36,10 @@ function addItem(type, message) {
     return
   }
 
+  if(message.startsWith('ScreepStats')) {
+    return
+  }
+
   var color = type == 'error' ? 'DD0000' : '#FFFFFF'
 
   if(items.length >= maxbuffer) {

@@ -83,14 +83,14 @@ are currently functional, although they may need some design help.
   * Support HTML displays. ✓
   * Submit console commands. ✓
 
-  * Silence screeps-stats.
+  * Silence screeps-stats. ✓
 
   * Add "interactive" mode that suppresses `log`.
     * Use CSS - allow "log" and "error" fields to be toggled
 
-  * React to application state.
-    * suspend/exit - kill websockets.
-    * resume - restart websockets.
+  * React to application state. ✓
+    * suspend/exit - kill websockets. ✓
+    * resume - restart websockets. ✓
     * leave page - kill websockets. ✓
 
 
