@@ -167,6 +167,9 @@ class ScreepsAPI {
     if(!this.id_user_map) {
       this.id_user_map = {}
     }
+    if(!this.user_id_map) {
+      this.user_id_map = {}
+    }
 
     if(!!this.id_user_map[id]) {
       return Promise.resolve(this.id_user_map[id])
@@ -183,6 +186,9 @@ class ScreepsAPI {
   userdata_from_username(username) {
     if(!this.user_id_map) {
       this.user_id_map = {}
+    }
+    if(!this.id_user_map) {
+      this.id_user_map = {}
     }
 
     if(!!this.user_id_map[username]) {
@@ -240,6 +246,7 @@ class ScreepsSocket {
 
       var message = evt.data
       if(message.startsWith('auth ok')) {
+        console.log('authenticated')
         var splitmessage = message.split(' ')
         if(splitmessage.length >= 3) {
           that.api.token = splitmessage[2]
@@ -318,7 +325,11 @@ class ScreepsSocket {
   }
 
   subscribe(watchpoint) {
-    this.connect()
+    if(this.subscriptions.indexOf(watchpoint) < 0) {
+      this.subscriptions.push(watchpoint)
+      this.connect()
+    }
+
     if(this.socket && this.socket.readyState == 1) {
       var that = this
       this.api.userdata_from_username(this.opts.username)
@@ -326,13 +337,10 @@ class ScreepsSocket {
         var message = 'subscribe user:' + userinfo['user']['_id'] + '/' + watchpoint
         console.log(message)
         that.socket.send(message)
+      }).catch(function(err){
+        console.log(err.message)
+        console.log(err.stack)
       })
-    }
-    if(this.subscriptions.indexOf(watchpoint) < 0) {
-      this.subscriptions.push(watchpoint)
-      if(this.subscriptions.length == 1) {
-        this.connect()
-      }
     }
   }
 

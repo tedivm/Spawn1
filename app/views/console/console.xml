@@ -27,19 +27,24 @@
              separatorColor="#2b2b2b"
              >
              <ListView.itemTemplate>
-               <HtmlView html="{{ message }}" class="console_output {{ type }}" textWrap="true" verticalAlignment="top"/>
+               <HtmlView html="{{ message }}" class="console_output" textWrap="true" verticalAlignment="top"/>
              </ListView.itemTemplate>
            </ListView>
 
-           <TextField hint="" class="console_background" row="1" col="0" text="" id="message_input" textWrap="true"></TextField>
-           <Button row="1" class="console_background" col="1" text="Send" onTap="sendConsoleCommand" horizontalAlignment="right"></Button>
-
-
+           <TextField
+             hint=""
+             class="console_background"
+             row="1" col="0"
+             text=""
+             id="message_input"
+             textWrap="true"
+             autocorrect="false"
+             autocapitalizationType="none"
+             returnKeyType="send"
+             returnPress="sendConsoleCommand"
+             >
+           </TextField>
          </grid-layout>
-
-        <Label text="console!" />
-
-
 
 
         </StackLayout>
