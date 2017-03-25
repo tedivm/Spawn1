@@ -1,7 +1,7 @@
 <StackLayout class="drawer-content">
   <ScrollView orientation="vertical">
     <StackLayout>
-      <label text="Home" tap="onTap" />
+      <label text="Profile" tap="onTap" />
       <label text="Messages" tap="onTap" />
       <label text="Console" tap="onTap" />
       <label text="Wallet" tap="onTap" />
