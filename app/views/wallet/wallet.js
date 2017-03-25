@@ -1,6 +1,6 @@
 var ScreepsAPI = require('../../services/screeps.js')
 var Session =    require('../../services/session.js')
-var frames = require("ui/frame");
+var frame = require("ui/frame");
 exports.onTap = require("../../shared/navtools.js").onTap
 
 var page;
@@ -70,5 +70,15 @@ exports.onLoadMoreItemsRequested = function() {
       items.push(order)
     }
     return Promise.resolve(true)
+  })
+}
+
+exports.viewTransaction = function (args) {
+  
+  var item = items.getItem(args.itemIndex);
+  console.dump(item)
+  frame.topmost().navigate({
+    moduleName: "views/wallet/transaction",
+    bindingContext: item
   })
 }

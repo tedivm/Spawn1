@@ -24,6 +24,7 @@
         pullToRefreshInitiated="pullToRefreshInitiated"
         loadOnDemandMode="Manual"
         loadMoreDataRequested="onLoadMoreItemsRequested"
+        itemTap="viewTransaction"
       >
         <lv:RadListView.listViewLayout>
           <lv:ListViewLinearLayout scrollDirection="Vertical" />
