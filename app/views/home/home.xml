@@ -17,7 +17,7 @@
           <Label text="{{ alliance_name }}" onTap="loadAlliancePage" class="h5 center"/>
           <Label text="{{ 'GCL: ' + gcl + ' (' + gcl_progress_string + '/' + gcl_progressTotal_string + ')' }}" />
           <Label text="{{ 'Rooms: ' + roomCount }}" />
-          <Label text="{{ 'Credits: ' + money }}" />
+          <Label text="{{ 'Credits: ' + money }}" onTap="loadWalletPage" />
           <Label text="{{ 'Control Rank: ' + controlRank }}" />
           <Label text="{{ 'Power Rank: ' + powerRank }}" />
           <Label text="{{ 'Power Level: ' + power_level + ' (' + power_progress_string + '/' + power_progressTotal_string + ')' }}" />

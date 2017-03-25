@@ -1,0 +1,41 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  navigatingTo="pageLoaded"
+  id="VIEWNAME">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+        <StackLayout orientation="vertical">
+          <Label text="" class=""/>
+          <Label text="Spawn1 is an Open Source (MIT License) mobile client for Screeps."
+            class=""
+            textWrap="true"
+            />
+          <Label
+            text="Screeps is the world's first MMO strategy sandbox game for programmers"
+            class="weblink"
+            textWrap="true"
+            onTap="goToScreeps"
+            />
+          <Label text="Visit us on Github!"
+            class="weblink" 
+            onTap="goToGithub"
+            />
+        </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

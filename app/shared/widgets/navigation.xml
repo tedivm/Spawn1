@@ -8,6 +8,7 @@
       <label text="Orders" tap="onTap" />
       <label text="Alliances" tap="onTap" />
       <label text="Server" tap="onTap" />
+      <label text="About" tap="onTap" />
       <label text="Logout" tap="onTap" />
     </StackLayout>
   </ScrollView>

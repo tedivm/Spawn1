@@ -33,3 +33,10 @@ exports.loadAlliancePage = function () {
     bindingContext: new_context
   })
 }
+
+exports.loadWalletPage = function () {
+  frame.topmost().navigate({
+    'moduleName': "views/wallet/wallet",
+    'clearHistory': true
+  })
+}
