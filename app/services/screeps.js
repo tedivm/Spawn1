@@ -401,6 +401,58 @@ class ScreepsSocket {
 }
 
 
+
+var GCL_POW= 2.4
+var GCL_MULTIPLY = 1000000
+
+
+var POWER_POW = 1.15
+var POWER_MULTIPLY = 1000
+
+var powertotals = [{level:0, total:0}]
+var powerlevels = {}
+var total = 0
+for(var i=1; i <= 350; i++) {
+  total += Math.pow(POWER_POW, i) * POWER_MULTIPLY
+  powertotals.push({
+    level: i,
+    total: total
+  })
+  powerlevels[i] = total
+}
+powertotals.reverse() // store from highest to lowest
+
+
+var ScreepsUtils = {
+  gclToControlPoints: function(gcl) {
+    return Math.pow(gcl - 1, GCL_POW) * GCL_MULTIPLY;
+  },
+
+  controlPointsToGcl: function(points) {
+    return Math.floor(Math.pow(points / GCL_MULTIPLY, 1 / GCL_POW) + 1);
+  },
+
+  powerToLevel: function (power) {
+    if(power <= 0) {
+
+    }
+    for(var powerdata of powertotals) {
+      if(powerdata.total < power) {
+        return powerdata.level
+      }
+    }
+    return false
+  },
+
+  powerAtLevel: function (level) {
+    return powerlevels[level]
+  },
+
+  powerToNextLevel: function (level) {
+    return Math.pow(POWER_POW, level) * POWER_MULTIPLY
+  }
+}
+
 function gz (data) {
   let buf = new Buffer(data.slice(3), 'base64')
   let zlib = require('zlib')
@@ -415,6 +467,6 @@ function inflate (data) {
   return JSON.parse(ret)
 }
 
-
-
-module.exports = new ScreepsAPI({})
+var api = new ScreepsAPI({})
+api.utils = ScreepsUtils
+module.exports = api

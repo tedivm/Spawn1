@@ -11,7 +11,11 @@ var drawer;
 exports.pageLoaded = function(args) {
   page = args.object;
   var source = {}
-  page.bindingContext = Session.userdata;
+  page.bindingContext = Session.userdata//JSON.parse(JSON.stringify(Session.userdata))
+
+
+  //ScreepsAPI.utils.controlPointsToGcl(Session.userdata.gcl)
+
   drawer = page.getViewById("drawer");
   page.getViewById("title").text = 'Spawn1'
 };

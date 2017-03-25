@@ -23,14 +23,14 @@ are currently functional, although they may need some design help.
   * Username ✓
   * Badge
   * Credits ✓
-  * GCL - Current Level
+  * GCL - Current Level ✓
   * GCL - Current Total ✓
-  * GCL - Tracking (current / next level)
+  * GCL - Tracking (current / next level) ✓
   * GCL - Progress Bar
 
-  * Power - Current Level
+  * Power - Current Level ✓
   * Power - Current Total ✓
-  * Power - Tracking (current / next level)
+  * Power - Tracking (current / next level) ✓
   * Power - Progress Bar
 
   * Number of Rooms ✓
@@ -61,11 +61,11 @@ are currently functional, although they may need some design help.
     * Actually cancel order (via console api) ✓
 
 
-### Wallet
+### Wallet ✓
 
   * History of Transactions ✓
   * Multiple Page Tracking ✓
-  * Transaction Detail Page
+  * Transaction Detail Page ✓
 
 
 ### Messenger ✓
@@ -110,11 +110,6 @@ are currently functional, although they may need some design help.
 
   * Control Rankings
   * Power Rankings
-
-
-### Screeps Observer
-
-  Twitter feed from the @ScreepsObserver bot
 
 ### Server Status ✓
 
