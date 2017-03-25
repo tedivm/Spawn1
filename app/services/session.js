@@ -51,23 +51,14 @@ class Session {
       that.userdata.gcl_progressTotal_string = ((that.userdata.gcl_progressTotal / divider).toPrecision(3)) + unit
       that.userdata.gcl_progress_string = ((that.userdata.gcl_progress / divider).toPrecision(3)) + unit
 
-
-
-
       that.userdata.power = data.power
       that.userdata.power_level = ScreepsAPI.utils.powerToLevel(data.power)
       var power_current_start = ScreepsAPI.utils.powerAtLevel(that.userdata.power_level)
-      console.dump(power_current_start)
       var power_next_start = ScreepsAPI.utils.powerAtLevel(that.userdata.power_level+1)
-      console.dump(power_next_start)
 
       that.userdata.power_progressTotal = Math.ceil(power_next_start - power_current_start)
       that.userdata.power_progress = Math.ceil(that.userdata.power - power_current_start)
       var percentage = that.userdata.power_progress / that.userdata.power_progressTotal
-      console.log(that.userdata.power_progress)
-      console.log(that.userdata.power_progressTotal)
-
-
 
       if(that.userdata.power_progressTotal > 1000000000) {
         var divider = 1000000000
