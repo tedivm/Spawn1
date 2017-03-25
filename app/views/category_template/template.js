@@ -1,6 +1,6 @@
 var ScreepsAPI = require('../../services/screeps.js')
 var Session =    require('../../services/session.js')
-var frames = require("ui/frame");
+var frame = require("ui/frame");
 exports.onTap = require("../../shared/navtools.js").onTap
 
 var page;

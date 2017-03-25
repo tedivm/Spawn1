@@ -31,7 +31,11 @@
 
       <!-- ACTUAL_CONTENT -->
        <grid-layout columns="*">
-        <list-view items="{{ conversations }}" class="listview {{ unread ? 'unread' : 'read' }} {{ type == 'in' ? 'them' : 'me' }}" itemTap="listViewItemTap">
+        <list-view
+          items="{{ conversations }}"
+          class="listview {{ unread ? 'unread' : 'read' }} {{ type == 'in' ? 'them' : 'me' }}"
+          itemTap="listViewItemTap"
+          >
           <list-view.itemTemplate>
             <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
               <!--<IC:WebImage src="" col="0" />-->
