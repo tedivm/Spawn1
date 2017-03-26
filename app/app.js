@@ -1,5 +1,6 @@
 var application = require("application");
 require("nativescript-nodeify");
+require("./prototypes/numbers.js")
 require("./services/league.js")
 var ScreepsAPI = require("./services/screeps.js")
 var imageCache = require("nativescript-web-image-cache");

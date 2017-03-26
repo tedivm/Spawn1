@@ -31,25 +31,9 @@ class Session {
 
       that.userdata.gcl_progressTotal = Math.ceil(gcl_next_start - gcl_current_start)
       that.userdata.gcl_progress = Math.ceil(that.userdata.controlpoints - gcl_current_start)
-      var percentage = that.userdata.gcl_progress / that.userdata.gcl_progressTotal
-
-
-      if(that.userdata.gcl_progressTotal > 1000000000) {
-        var divider = 1000000000
-        var unit = 'B'
-      } else if(that.userdata.gcl_progressTotal > 1000000) {
-        var divider = 1000000
-        var unit = 'M'
-      } else if(that.userdata.gcl_progressTotal > 1000) {
-        var divider = 1000
-        var unit = 'K'
-      } else {
-        var divider = 1
-        var unit = ''
-      }
-
-      that.userdata.gcl_progressTotal_string = ((that.userdata.gcl_progressTotal / divider).toPrecision(3)) + unit
-      that.userdata.gcl_progress_string = ((that.userdata.gcl_progress / divider).toPrecision(3)) + unit
+      that.userdata.gcl_progress_percentage = Math.round((that.userdata.gcl_progress / that.userdata.gcl_progressTotal) * 100)
+      that.userdata.gcl_progressTotal_string = that.userdata.gcl_progressTotal.toAbbreviated()
+      that.userdata.gcl_progress_string = that.userdata.gcl_progress.toAbbreviated()
 
       that.userdata.power = data.power
       that.userdata.power_level = ScreepsAPI.utils.powerToLevel(data.power)
@@ -58,23 +42,9 @@ class Session {
 
       that.userdata.power_progressTotal = Math.ceil(power_next_start - power_current_start)
       that.userdata.power_progress = Math.ceil(that.userdata.power - power_current_start)
-      var percentage = that.userdata.power_progress / that.userdata.power_progressTotal
-
-      if(that.userdata.power_progressTotal > 1000000000) {
-        var divider = 1000000000
-        var unit = 'B'
-      } else if(that.userdata.power_progressTotal > 1000000) {
-        var divider = 1000000
-        var unit = 'M'
-      } else if(that.userdata.power_progressTotal > 1000) {
-        var divider = 1000
-        var unit = 'K'
-      } else {
-        var divider = 1
-        var unit = ''
-      }
-      that.userdata.power_progressTotal_string = ((that.userdata.power_progressTotal / divider).toPrecision(3)) + unit
-      that.userdata.power_progress_string = ((that.userdata.power_progress / divider).toPrecision(3)) + unit
+      that.userdata.power_progress_percentage = Math.round((that.userdata.power_progress / that.userdata.power_progressTotal) * 100)
+      that.userdata.power_progressTotal_string = that.userdata.power_progressTotal.toAbbreviated()
+      that.userdata.power_progress_string = that.userdata.power_progress.toAbbreviated()
 
 
 
