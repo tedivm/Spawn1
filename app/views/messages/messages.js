@@ -43,6 +43,7 @@ function loadMessages () {
         conversation['message']['rusername'] = username_mapping[conversation['message']['respondent']]
         var date = new Date(conversation['message']['date']);
         conversation['message']['date_locale'] = date.toLocaleString()
+        conversation['message']['badge_url'] = League.getBadgeUrl(conversation['message']['rusername'])
       }
       return data
     })

@@ -15,6 +15,7 @@
   "dependencies": {
     "events": "^1.1.1",
     "https": "^1.0.0",
+    "lodash": "^4.17.4",
     "nativescript-canvas-interface": "^1.0.0",
     "nativescript-iqkeyboardmanager": "^1.0.1",
     "nativescript-nodeify": "^0.5.3",

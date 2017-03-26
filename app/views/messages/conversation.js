@@ -28,8 +28,16 @@ function loadConversation () {
   .then(function(data){
     var scroll = false
     for(var message of data['messages']) {
+
       if(processed_messages.indexOf(message['_id']) < 0) {
         processed_messages.push(message['_id'])
+
+        if(message.type == 'out') {
+          message.badge_url = League.getBadgeUrl(Session.userdata.username)
+        } else {
+          message.badge_url = League.getBadgeUrl(page.bindingContext.recipient)
+        }
+
         var date = new Date(message['date']);
         message['date_locale'] = date.toLocaleString()
         items.push(message)

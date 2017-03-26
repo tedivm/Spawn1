@@ -1,6 +1,7 @@
 <Page
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
   unloaded="pageUnloaded"
   id="VIEWNAME">
@@ -36,8 +37,8 @@
              <template key="them">
                <GridLayout columns="*" rows="auto, 40" class="msg them">
                  <StackLayout orientation="horizontal">
-                   <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
-                   <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top"/>
+                   <IC:WebImage class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="{{ badge_url }}" col="1" />
+                   <Label text="{{ text }}" class="msg_text" textWrap="true" width="80%" verticalAlignment="top"/>
                  </StackLayout>
                  <Label class="msg_timestamp" text="{{ date_locale }}" verticalAlignment="top" row="1" colSpan="2" />
                </GridLayout>
@@ -46,8 +47,8 @@
              <template key="me">
                <GridLayout columns="*" rows="auto, 40" class="msg me">
                  <StackLayout orientation="horizontal" horizontalAlignment="right">
-                   <Label text="{{ text }}" class="msg_text" textWrap="true" verticalAlignment="top" />
-                   <!-- Eventual Badge SVG <Image class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="" col="1" />-->
+                   <Label text="{{ text }}" class="msg_text" textWrap="true" width="80%" verticalAlignment="top" />
+                   <IC:WebImage class="authorimg" stretch="aspectFill" height="30" width="30" verticalAlignment="top" src="{{ badge_url }}" col="1" />
                  </StackLayout>
                  <Label class="msg_timestamp" text="{{ date_locale }}" verticalAlignment="top" row="1" />
                </GridLayout>

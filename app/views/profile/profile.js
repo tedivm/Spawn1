@@ -14,7 +14,6 @@ exports.pageLoaded = function(args) {
   page.bindingContext = Session.userdata//JSON.parse(JSON.stringify(Session.userdata))
 
 
-  //ScreepsAPI.utils.controlPointsToGcl(Session.userdata.gcl)
 
   drawer = page.getViewById("drawer");
   page.getViewById("title").text = 'Spawn1'

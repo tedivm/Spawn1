@@ -1,6 +1,8 @@
 var applicationSettings = require("application-settings");
 var timer = require("timer");
 
+var leagueurl = 'http://www.leagueofautomatednations.com/'
+
 class League {
   constructor() {
     this.users = {}
@@ -20,9 +22,9 @@ class League {
     this.alliances = JSON.parse(applicationSettings.getString('league_alliance_data', '{}'))
     this.users = JSON.parse(applicationSettings.getString('league_user_data', '{}'))
 
-    console.log('Loading alliance data from http://www.leagueofautomatednations.com/alliances.js')
+    console.log('Loading alliance data from ' + leagueurl + 'alliances.js')
     var that = this
-    return fetch("http://www.leagueofautomatednations.com/alliances.js")
+    return fetch(leagueurl + "alliances.js")
     .then(response => {
       if(!response.ok) {
         throw new Error()
@@ -42,9 +44,9 @@ class League {
         }
 
         if(that.alliances[alliance]['logo']) {
-          that.alliances[alliance]['logo'] = 'http://www.leagueofautomatednations.com/obj/' + that.alliances[alliance]['logo']
+          that.alliances[alliance]['logo'] = leagueurl + 'obj/' + that.alliances[alliance]['logo']
         } else {
-          that.alliances[alliance]['logo'] = 'http://www.leagueofautomatednations.com/static/img/leaguelogo.png'
+          that.alliances[alliance]['logo'] = leagueurl + 'static/img/leaguelogo.png'
         }
 
         that.alliances[alliance].memberCount = that.alliances[alliance].members.length
@@ -87,6 +89,10 @@ class League {
 
   getAllianceData() {
     return Object.values(this.alliances)
+  }
+
+  getBadgeUrl(username) {
+    return leagueurl + 'badges/users/' + username + '.png'
   }
  }
 

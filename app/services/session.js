@@ -57,6 +57,7 @@ class Session {
         that.userdata.alliance_name = alliance.name
       }
 
+      that.userdata.badge_url = League.getBadgeUrl(data.username)
       return ScreepsAPI.seasons()
     })
 

@@ -1,6 +1,7 @@
 <Page
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
   unloaded="pageUnloaded"
   id="messages">
@@ -38,7 +39,7 @@
           >
           <list-view.itemTemplate>
             <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
-              <!--<IC:WebImage src="" col="0" />-->
+              <IC:WebImage src="{{ badge_url }}" col="0" />
               <stack-layout col="1" rows="auto">
                 <label text="{{ rusername }}" class="h2" row="0" col="1"/><label text="{{ date_locale }}" class="datetime" row="0" col="2"/>
                 <label text="{{ text }}" class="p" row="1" col="1" textWrap="true"/>
