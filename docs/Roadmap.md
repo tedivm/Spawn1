@@ -21,7 +21,7 @@ are currently functional, although they may need some design help.
 
   * Formatting
   * Username ✓
-  * Badge
+  * Badge ✓
   * Credits ✓
   * GCL - Current Level ✓
   * GCL - Current Total ✓

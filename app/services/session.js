@@ -1,7 +1,12 @@
 var ScreepsAPI = require('./screeps.js')
 var League = require('./league.js')
+var timer = require("timer");
 
 class Session {
+
+  construct() {
+    this.timer = false
+  }
 
   isLoaded() {
     return(!!this.userdata && !!this.userdata.username)
@@ -12,6 +17,13 @@ class Session {
     var that = this
     var session = that
     var current_season = false
+    var that = this
+    if(!this.timer) {
+      this.timer = timer.setInterval(() => {
+        that.loadUser()
+      }, 1000 * 60 * 2)
+    }
+
 
     // Return promise chain
 
@@ -108,6 +120,10 @@ class Session {
   }
 
   clear() {
+    if(this.timer) {
+      timer.clearInterval(this.timer)
+      this.timer = false
+    }
     this.userdata = {}
     ScreepsAPI.reset()
   }
