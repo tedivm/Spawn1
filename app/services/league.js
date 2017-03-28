@@ -91,8 +91,9 @@ class League {
     return Object.values(this.alliances)
   }
 
-  getBadgeUrl(username) {
-    return leagueurl + 'badges/users/' + username + '.png'
+  getBadgeUrl(username, alliance=true) {
+    var prefix = alliance ? 'alliances/' : 'users/'
+    return leagueurl + 'badges/' + prefix + username + '.png'
   }
  }
 

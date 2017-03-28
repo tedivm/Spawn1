@@ -33,9 +33,9 @@ function loadConversation () {
         processed_messages.push(message['_id'])
 
         if(message.type == 'out') {
-          message.badge_url = League.getBadgeUrl(Session.userdata.username)
+          message.badge_url = League.getBadgeUrl(Session.userdata.username, false)
         } else {
-          message.badge_url = League.getBadgeUrl(page.bindingContext.recipient)
+          message.badge_url = League.getBadgeUrl(page.bindingContext.recipient, false)
         }
 
         var date = new Date(message['date']);
