@@ -1,5 +1,7 @@
 require('nativescript-websockets');
 
+// Time- in milliseconds- after which we reauthenticate.
+const authentication_timeout = 45000
 
 class ScreepsAPI {
 
@@ -19,6 +21,17 @@ class ScreepsAPI {
       this.opts.host = opts.ptr ? 'screeps.com/ptr/' : 'screeps.com/'
     }
     this.opts.prefix = this.opts.insecure ? 'http://' : 'https://'
+  }
+
+  authcheck() {
+    var lastcall = this.lastcall || 1
+    this.lastcall = (new Date()).getTime()
+
+    if(!this.token || (this.lastcall - lastcall) > authentication_timeout) {
+      return this.auth()
+    }
+
+    return Promise.resolve(true)
   }
 
   get_web_socket() {
@@ -69,6 +82,7 @@ class ScreepsAPI {
       if(!!response.headers.has('X-Token')) {
         that.token = response.headers.get('X-Token')
       }
+      that.lastcall = (new Date()).getTime()
       return response.json()
     })
     .then(function(data){
@@ -80,38 +94,39 @@ class ScreepsAPI {
   }
 
   get(endpoint, args) {
-    if(!!args) {
-      endpoint += '?' + Object.keys(args).map(function(key) {
-          return [key, args[key]].map(encodeURIComponent).join("=");
-      }).join("&");
-    }
-
-    console.log(endpoint)
-
-    return this.req(endpoint, 'GET')
+    var that = this
+    return this.authcheck().then(function(){
+      if(!!args) {
+        endpoint += '?' + Object.keys(args).map(function(key) {
+            return [key, args[key]].map(encodeURIComponent).join("=");
+        }).join("&");
+      }
+      return that.req(endpoint, 'GET')
+    })
   }
 
   post(endpoint, args) {
-
-    console.log(endpoint)
-    if(endpoint != 'auth/signin') {
-      console.log(JSON.stringify(args))
-    }
-
-    var formData = new FormData();
-    var keys = Object.keys(args)
-    for(var index of keys) {
-      formData.append(index, args[index]);
-    }
-
-    return this.req(endpoint, 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
+    var that = this
+    return this.authcheck().then(function(){
+      console.log(endpoint)
+      if(endpoint != 'auth/signin') {
+        console.log(JSON.stringify(args))
+      }
+      var formData = new FormData();
+      var keys = Object.keys(args)
+      for(var index of keys) {
+        formData.append(index, args[index]);
+      }
+      return that.req(endpoint, 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
+    })
   }
 
   auth() {
-    return this.post('auth/signin', {
-      email:this.opts.username,
-      password:this.opts.password
-    })
+    console.log('auth/signin')
+    var formData = new FormData();
+    formData.append('email', this.opts.username)
+    formData.append('password', this.opts.password)
+    return this.req('auth/signin', 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
   }
 
   whoami() {
