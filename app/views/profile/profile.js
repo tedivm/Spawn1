@@ -11,12 +11,14 @@ var drawer;
 exports.pageLoaded = function(args) {
   page = args.object;
   var source = {}
-  page.bindingContext = Session.userdata//JSON.parse(JSON.stringify(Session.userdata))
-
-
 
   drawer = page.getViewById("drawer");
-  page.getViewById("title").text = 'Spawn1'
+  page.getViewById("title").text = Session.userdata.username
+
+  Session.loadUser()
+  .then(function(){
+    page.bindingContext = Session.userdata
+  })
 };
 
 exports.toggleDrawer = function() {
