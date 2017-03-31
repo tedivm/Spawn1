@@ -94,14 +94,14 @@ are currently functional, although they may need some design help.
     * leave page - kill websockets. ✓
 
 
-### Alliances
+### Alliances ✓
 
   * Listing of Alliances ✓
     * Include images from Leage website. ✓
 
   * Alliance Subpage ✓
     * Members ✓
-    * Ranking Data
+    * Ranking Data ✓
 
 
 ### Alliance Rankings

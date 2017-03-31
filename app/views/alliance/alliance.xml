@@ -30,6 +30,10 @@
             <Label text="{{ name }}" textWrap="true" />
             <Label text="{{ memberCount + ' members' }}" onTap='loadMemberPage'/>
             <Label text="{{ 'Slack: #' + slack_channel }}" visibility="{{ !!slack_channel ? 'visible' : 'collapsed' }}" textWrap="true" onTap='loadSlack'/>
+            <Label text="{{ 'Alliance GCL Rank: ' + alliance_gcl_rank }}" textWrap="true" />
+            <Label text="{{ 'Combined GCL Rank: ' + combined_gcl_rank }}" textWrap="true" />
+            <Label text="{{ 'Spawn Rank: ' + spawns_rank }}" textWrap="true" />
+            <Label text="{{ 'Members Rank: ' + members_rank }}" textWrap="true" />
           </StackLayout>
         </ScrollView>
       </StackLayout>
