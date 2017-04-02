@@ -5,6 +5,7 @@
   navigatingTo="pageLoaded"
   navigatingFrom="pageUnloaded"
   navigatedTo="navigatedTo"
+  class="page"
   id="alliance">
 
   <Page.actionBar>

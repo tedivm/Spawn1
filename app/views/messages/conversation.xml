@@ -4,6 +4,7 @@
   xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
   unloaded="pageUnloaded"
+  class="page"
   id="VIEWNAME">
 
   <Page.actionBar>

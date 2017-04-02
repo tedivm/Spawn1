@@ -3,6 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
+  class="page"
   id="alliances">
 
   <Page.actionBar>

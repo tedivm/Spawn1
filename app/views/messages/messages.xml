@@ -4,6 +4,7 @@
   xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
   unloaded="pageUnloaded"
+  class="page"
   id="messages">
 
   <Page.actionBar>
@@ -31,13 +32,13 @@
 
 
       <!-- ACTUAL_CONTENT -->
-       <grid-layout columns="*">
-        <list-view
+       <grid-layout columns="*" class="background-color-dark">
+        <ListView
           items="{{ conversations }}"
-          class="listview {{ unread ? 'unread' : 'read' }} {{ type == 'in' ? 'them' : 'me' }}"
+          class="background-color-dark listview {{ unread ? 'unread' : 'read' }} {{ type == 'in' ? 'them' : 'me' }}"
           itemTap="listViewItemTap"
           >
-          <list-view.itemTemplate>
+          <ListView.itemTemplate>
             <grid-layout columns="50, *" rows="*" class="item item-thumbnail">
               <IC:WebImage src="{{ badge_url }}" col="0" />
               <stack-layout col="1" rows="auto">
@@ -45,8 +46,8 @@
                 <label text="{{ text }}" class="p" row="1" col="1" textWrap="true"/>
               </stack-layout>
             </grid-layout>
-          </list-view.itemTemplate>
-        </list-view>
+          </ListView.itemTemplate>
+        </ListView>
       </grid-layout>
 
 

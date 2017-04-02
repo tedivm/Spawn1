@@ -1,16 +1,43 @@
-@import "nativescript-theme-core/css/core.light.css";
+
 @import url('~/platform.css');
+
+
+/* #243044 */
+/* #556278 */
+/* #3B485D */
+/* #162339 */
+/* #0A1527 */
+/* #FF404B */
 
 /* Your CSS goes here */
 
 Page {
-    background-color: white;
+    background-color: #243044;
+    color: white;
     font-size: 17;
 }
+
+ListView {
+  background-color: #243044;
+  color: white;
+}
+
+.list-view {
+  background-color: #243044;
+  color: white;  
+}
+
 TextField {
     margin: 10;
     padding: 10;
+    placeholder-color: #556278;
 }
+
+
+actionBar {
+  color: black;
+}
+
 Image {
     margin-top: 20;
     margin-left: 0;
@@ -23,7 +50,7 @@ Button {
 }
 
 .drawer-content {
-  background-color: #053140;
+  background-color: #556278;
   color: white;
   padding-top: 20;
 }
@@ -40,47 +67,6 @@ Label {
 .line-through {
   text-decoration: line-through;
 }
-
-
-
-
-
-
-
-
-
-.background-color-light {
-  background-color: #ffffff; }
-
-.background-color-accent {
-  background-color: #FF404B; }
-
-.background-color-dark {
-  background-color: #243044; }
-
-.color-light {
-  color: black; }
-
-.color-accent {
-  color: #FF404B; }
-
-.color-dark {
-  color: #243044; }
-
-.action-bar-light {
-  background-color: #ffffff;
-  color: #FF404B; }
-
-navigation-button {
-  color: #FF404B; }
-
-.action-bar-accent {
-  background-color: #FF404B;
-  color: white; }
-
-.action-bar-dark {
-  background-color: #243044;
-  color: white; }
 
 .h1 {
   font-size: 36;
@@ -109,24 +95,6 @@ navigation-button {
 .p {
   font-size: 14;
   margin: 0 0 10 0; }
-
-.background-color-light {
-  background-color: #ffffff; }
-
-.background-color-accent {
-  background-color: #FF404B; }
-
-.background-color-dark {
-  background-color: #243044; }
-
-.color-light {
-  color: black; }
-
-.color-accent {
-  color: #FF404B; }
-
-.color-dark {
-  color: #243044; }
 
 .button {
   padding: 10 12 10 10;
@@ -170,25 +138,28 @@ navigation-button {
     border-color: #243044;
     border-width: 1; }
 
+
 .listview {
-  color: black; }
+  background-color: #243044
+  color: white; }
   .listview .item {
     padding: 10 10 10 10;
     font-size: 16;
-    color: #444; }
+    background-color: #243044;
+    color: white; }
     .listview .item .h2 {
       margin: 0;
       margin: 0;
       font-size: 20; }
     .listview .item .p {
       font-size: 14;
-      color: #666;
+      color: white;
       margin: 0; }
 
 .listview-inset {
   margin: 10;
   border-width: 1;
-  border-color: #DDDDDD;
+  border-color: #243044;
   border-radius: 10; }
 
 .item-avatar image {
@@ -225,24 +196,6 @@ navigation-button {
   border-width: 1;
   border-color: #DDDDDD; }
 
-.background-color-light {
-  background-color: #ffffff; }
-
-.background-color-accent {
-  background-color: #FF404B; }
-
-.background-color-dark {
-  background-color: #243044; }
-
-.color-light {
-  color: black; }
-
-.color-accent {
-  color: #FF404B; }
-
-.color-dark {
-  color: #243044; }
-
 .switch-accent {
   background-color: #FF404B; }
 
@@ -269,10 +222,6 @@ navigation-button {
     background-color: #243044;
     color: #ffffff; }
 
-/*
-textfield {
-  font-size: 14; }
-*/
 
 .fa {
   font-family: 'FontAwesome', 'fontawesome-webfont'; }
@@ -313,3 +262,4 @@ textfield {
   font-size: 10;
   margin: 0 0 10 0;
 }
+

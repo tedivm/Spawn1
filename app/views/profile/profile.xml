@@ -3,6 +3,7 @@
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   xmlns:IC="nativescript-web-image-cache"
   navigatingTo="pageLoaded"
+  class="page"
   id="profile">
 
   <Page.actionBar>
@@ -16,8 +17,8 @@
       <StackLayout>
         <ScrollView orientation="vertical">
           <StackLayout orientation="vertical" id='profile_list'>
-            <GridLayout columns="100,*" rows="*">
-              <IC:WebImage src="{{ badge_url }}" height="100" col="0"/>
+            <GridLayout columns="100,*" rows="*" class="user_header">
+              <IC:WebImage src="{{ badge_url }}" class="badge" height="100" col="0"/>
               <GridLayout col="1" columns="*" rows="auto,*">
                 <Label text="{{ username }}" class="h2 center" col="1" row="0"/>
                 <Label text="{{ alliance_name }}" onTap="loadAlliancePage" class="h5 center" col="1" row="1"/>

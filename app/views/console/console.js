@@ -48,7 +48,7 @@ function addItem(type, message) {
 
   items.push({
     'type': type,
-    'message': '<span style="background-color:#2b2b2b; color:'+color+';">' + message + '</span>'
+    'message': '<span style="color:'+color+';">' + message + '</span>'
   })
 
 }

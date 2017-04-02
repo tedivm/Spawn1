@@ -2,7 +2,8 @@
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   navigatingTo="pageLoaded"
-  id="VIEWNAME">
+  class="page"
+  id="about">
 
   <Page.actionBar>
     <widgets:header />
@@ -15,17 +16,17 @@
         <StackLayout orientation="vertical">
           <Label text="" class=""/>
           <Label text="Spawn1 is an Open Source (MIT License) mobile client for Screeps."
-            class=""
+            class="body"
             textWrap="true"
             />
           <Label
             text="Screeps is the world's first MMO strategy sandbox game for programmers"
-            class="weblink"
+            class="weblink body"
             textWrap="true"
             onTap="goToScreeps"
             />
           <Label text="Visit us on Github!"
-            class="weblink" 
+            class="weblink body"
             onTap="goToGithub"
             />
         </StackLayout>

@@ -1,7 +1,9 @@
-<Page loaded="loaded" actionBarHidden="false">
+<Page loaded="loaded"
+  actionBarHidden="false"
+  class="page">
   <ActivityIndicator id="ActivityIndicator" visibility="{{ activity }}" busy="{{ activity }}" />
   <StackLayout orientation="vertical">
-    <Image src="res://logo" stretch="aspectFill"  width="175" height="175" horizontalAlignment="center"/> 
+    <Image src="res://logo" stretch="aspectFill"  width="175" height="175" horizontalAlignment="center"/>
     <TextField id="username" hint="Screeps Username" keyboardType="username" autocorrect="false" autocapitalizationType="none" />
     <TextField id="password" hint="Screeps Password" secure="true" />
     <Button text="Sign in" tap="signIn" />

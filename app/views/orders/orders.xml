@@ -3,6 +3,7 @@
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   navigatingTo="pageLoaded"
+  class="page"
   id="orders">
 
   <Page.actionBar>
@@ -11,6 +12,7 @@
 
   <drawer:RadSideDrawer
     id="drawer"
+    class="list-view"
     drawerLocation="Left"
     drawerContentSize="170">
 
@@ -18,6 +20,7 @@
     <drawer:RadSideDrawer.mainContent>
       <lv:RadListView
         id="list-view"
+        class="list-view"
         items="{{ items }}"
         pullToRefresh="true"
         pullToRefreshInitiated="pullToRefreshInitiated"
@@ -30,7 +33,7 @@
         </lv:RadListView.listViewLayout>
 
         <lv:RadListView.itemTemplate>
-          <GridLayout backgroundColor="white">
+          <GridLayout class="list-view">
             <Label text="{{ roomName + ' ' + type + 'ing ' + remainingAmount + ' ' + resourceType + ' at ' + price }}" class="{{ active ? '' : 'line-through' }} {{ type }}" />
           </GridLayout>
         </lv:RadListView.itemTemplate>
