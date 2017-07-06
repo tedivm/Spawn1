@@ -6,11 +6,11 @@ var imageCache = require("nativescript-web-image-cache");
 if (applicationModule.android) {
     applicationModule.onLaunch = function (intent) {
             imageCache.initialize();
+            imageCache.clearCache();
     };
 }
 
 // Refresh cache when app is loaded.
-imageCache.clearCache();
 
 
 applicationModule.start({ moduleName: "views/login/login" });
