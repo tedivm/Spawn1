@@ -5,13 +5,12 @@ require("./services/league.js")
 var ScreepsAPI = require("./services/screeps.js")
 var imageCache = require("nativescript-web-image-cache");
 
-
 // Refresh cache when app is loaded.
-imageCache.clearCache();
 
 application.on(application.launchEvent, function (args) {
   if (application.android) {
     imageCache.initialize();
+    imageCache.clearCache();
   }
 
   var ScreepsSocket = ScreepsAPI.get_web_socket()
