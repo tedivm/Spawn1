@@ -21,16 +21,16 @@ are currently functional, although they may need some design help.
 
   * Formatting
   * Username ✓
-  * Badge
+  * Badge ✓
   * Credits ✓
-  * GCL - Current Level
+  * GCL - Current Level ✓
   * GCL - Current Total ✓
-  * GCL - Tracking (current / next level)
+  * GCL - Tracking (current / next level) ✓
   * GCL - Progress Bar
 
-  * Power - Current Level
+  * Power - Current Level ✓
   * Power - Current Total ✓
-  * Power - Tracking (current / next level)
+  * Power - Tracking (current / next level) ✓
   * Power - Progress Bar
 
   * Number of Rooms ✓
@@ -61,11 +61,11 @@ are currently functional, although they may need some design help.
     * Actually cancel order (via console api) ✓
 
 
-### Wallet
+### Wallet ✓
 
   * History of Transactions ✓
   * Multiple Page Tracking ✓
-  * Transaction Detail Page
+  * Transaction Detail Page ✓
 
 
 ### Messenger ✓
@@ -78,27 +78,30 @@ are currently functional, although they may need some design help.
 
 ### Console
 
-  * Read console results.
+  * Read console results. ✓
+  * Display console output. ✓
+  * Support HTML displays. ✓
+  * Submit console commands. ✓
 
-  * Submit console commands.
-
-  * Silence screeps-stats.
+  * Silence screeps-stats. ✓
 
   * Add "interactive" mode that suppresses `log`.
+    * Use CSS - allow "log" and "error" fields to be toggled
 
-  * React to application state.
-    * suspend/exit - kill websockets.
-    * resume - restart websockets.
+  * React to application state. ✓
+    * suspend/exit - kill websockets. ✓
+    * resume - restart websockets. ✓
+    * leave page - kill websockets. ✓
 
 
-### Alliances
+### Alliances ✓
 
   * Listing of Alliances ✓
     * Include images from Leage website. ✓
 
   * Alliance Subpage ✓
     * Members ✓
-    * Ranking Data
+    * Ranking Data ✓
 
 
 ### Alliance Rankings
@@ -107,11 +110,6 @@ are currently functional, although they may need some design help.
 
   * Control Rankings
   * Power Rankings
-
-
-### Screeps Observer
-
-  Twitter feed from the @ScreepsObserver bot
 
 ### Server Status ✓
 

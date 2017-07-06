@@ -20,6 +20,7 @@ var page;
 var drawer;
 
 var conversationTimerID = false
+var lastMessageTime = false
 
 
 function loadConversation () {
@@ -28,10 +29,19 @@ function loadConversation () {
   .then(function(data){
     var scroll = false
     for(var message of data['messages']) {
+
       if(processed_messages.indexOf(message['_id']) < 0) {
         processed_messages.push(message['_id'])
-        var date = new Date(message['date']);
-        message['date_locale'] = date.toLocaleString()
+
+        if(message.type == 'out') {
+          message.badge_url = League.getBadgeUrl(Session.userdata.username, false)
+        } else {
+          message.badge_url = League.getBadgeUrl(page.bindingContext.recipient, false)
+        }
+
+        var message_date = new Date(message['date']);
+        lastMessageTime = message_date
+        message['date_locale'] = message_date.toLocaleString()
         items.push(message)
         scroll = true
       }
@@ -67,8 +77,16 @@ exports.pageLoaded = function(args) {
   loadConversation()
   pageData.set("messages", items);
 
-  conversationTimerID = timer.setInterval(function(){
+  conversationTimerID = timer.setInterval(function conversationReloadTimer(){
     loadConversation()
+    if(lastMessageTime) {
+      // Range between 5 to 90 second delay between reloads.
+      var elapsed = ((new Date()).getTime() - lastMessageTime.getTime())
+      var interval = Math.round(Math.max(Math.min(elapsed/10, 90000), 5000))
+      timer.clearInterval(conversationTimerID)
+      conversationTimerID = false
+      conversationTimerID = timer.setInterval(conversationReloadTimer, interval)
+    }
   }, 5000)
 
 };

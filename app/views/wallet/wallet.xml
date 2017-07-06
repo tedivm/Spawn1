@@ -3,6 +3,7 @@
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   navigatingTo="pageLoaded"
+  class="page"
   id="orders">
 
   <Page.actionBar>
@@ -24,13 +25,14 @@
         pullToRefreshInitiated="pullToRefreshInitiated"
         loadOnDemandMode="Manual"
         loadMoreDataRequested="onLoadMoreItemsRequested"
+        itemTap="viewTransaction"
       >
         <lv:RadListView.listViewLayout>
           <lv:ListViewLinearLayout scrollDirection="Vertical" />
         </lv:RadListView.listViewLayout>
 
         <lv:RadListView.itemTemplate>
-          <GridLayout backgroundColor="white">
+          <GridLayout class="background-color-dark">
             <Label text="{{ tick + ': ' + balance  }}" class="{{ direction }}" />
           </GridLayout>
         </lv:RadListView.itemTemplate>

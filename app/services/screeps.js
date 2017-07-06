@@ -1,5 +1,7 @@
 require('nativescript-websockets');
 
+// Time- in milliseconds- after which we reauthenticate.
+const authentication_timeout = 45000
 
 class ScreepsAPI {
 
@@ -19,6 +21,17 @@ class ScreepsAPI {
       this.opts.host = opts.ptr ? 'screeps.com/ptr/' : 'screeps.com/'
     }
     this.opts.prefix = this.opts.insecure ? 'http://' : 'https://'
+  }
+
+  authcheck() {
+    var lastcall = this.lastcall || 1
+    this.lastcall = (new Date()).getTime()
+
+    if(!this.token || (this.lastcall - lastcall) > authentication_timeout) {
+      return this.auth()
+    }
+
+    return Promise.resolve(true)
   }
 
   get_web_socket() {
@@ -69,6 +82,7 @@ class ScreepsAPI {
       if(!!response.headers.has('X-Token')) {
         that.token = response.headers.get('X-Token')
       }
+      that.lastcall = (new Date()).getTime()
       return response.json()
     })
     .then(function(data){
@@ -80,38 +94,39 @@ class ScreepsAPI {
   }
 
   get(endpoint, args) {
-    if(!!args) {
-      endpoint += '?' + Object.keys(args).map(function(key) {
-          return [key, args[key]].map(encodeURIComponent).join("=");
-      }).join("&");
-    }
-
-    console.log(endpoint)
-
-    return this.req(endpoint, 'GET')
+    var that = this
+    return this.authcheck().then(function(){
+      if(!!args) {
+        endpoint += '?' + Object.keys(args).map(function(key) {
+            return [key, args[key]].map(encodeURIComponent).join("=");
+        }).join("&");
+      }
+      return that.req(endpoint, 'GET')
+    })
   }
 
   post(endpoint, args) {
-
-    console.log(endpoint)
-    if(endpoint != 'auth/signin') {
-      console.log(JSON.stringify(args))
-    }
-
-    var formData = new FormData();
-    var keys = Object.keys(args)
-    for(var index of keys) {
-      formData.append(index, args[index]);
-    }
-
-    return this.req(endpoint, 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
+    var that = this
+    return this.authcheck().then(function(){
+      console.log(endpoint)
+      if(endpoint != 'auth/signin') {
+        console.log(JSON.stringify(args))
+      }
+      var formData = new FormData();
+      var keys = Object.keys(args)
+      for(var index of keys) {
+        formData.append(index, args[index]);
+      }
+      return that.req(endpoint, 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
+    })
   }
 
   auth() {
-    return this.post('auth/signin', {
-      email:this.opts.username,
-      password:this.opts.password
-    })
+    console.log('auth/signin')
+    var formData = new FormData();
+    formData.append('email', this.opts.username)
+    formData.append('password', this.opts.password)
+    return this.req('auth/signin', 'POST', formData, 'application/x-www-form-urlencoded; charset=utf-8')
   }
 
   whoami() {
@@ -167,6 +182,9 @@ class ScreepsAPI {
     if(!this.id_user_map) {
       this.id_user_map = {}
     }
+    if(!this.user_id_map) {
+      this.user_id_map = {}
+    }
 
     if(!!this.id_user_map[id]) {
       return Promise.resolve(this.id_user_map[id])
@@ -183,6 +201,9 @@ class ScreepsAPI {
   userdata_from_username(username) {
     if(!this.user_id_map) {
       this.user_id_map = {}
+    }
+    if(!this.id_user_map) {
+      this.id_user_map = {}
     }
 
     if(!!this.user_id_map[username]) {
@@ -240,6 +261,7 @@ class ScreepsSocket {
 
       var message = evt.data
       if(message.startsWith('auth ok')) {
+        console.log('authenticated')
         var splitmessage = message.split(' ')
         if(splitmessage.length >= 3) {
           that.api.token = splitmessage[2]
@@ -318,7 +340,11 @@ class ScreepsSocket {
   }
 
   subscribe(watchpoint) {
-    this.connect()
+    if(this.subscriptions.indexOf(watchpoint) < 0) {
+      this.subscriptions.push(watchpoint)
+      this.connect()
+    }
+
     if(this.socket && this.socket.readyState == 1) {
       var that = this
       this.api.userdata_from_username(this.opts.username)
@@ -326,13 +352,10 @@ class ScreepsSocket {
         var message = 'subscribe user:' + userinfo['user']['_id'] + '/' + watchpoint
         console.log(message)
         that.socket.send(message)
+      }).catch(function(err){
+        console.log(err.message)
+        console.log(err.stack)
       })
-    }
-    if(this.subscriptions.indexOf(watchpoint) < 0) {
-      this.subscriptions.push(watchpoint)
-      if(this.subscriptions.length == 1) {
-        this.connect()
-      }
     }
   }
 
@@ -393,6 +416,58 @@ class ScreepsSocket {
 }
 
 
+
+var GCL_POW= 2.4
+var GCL_MULTIPLY = 1000000
+
+
+var POWER_POW = 1.15
+var POWER_MULTIPLY = 1000
+
+var powertotals = [{level:0, total:0}]
+var powerlevels = {}
+var total = 0
+for(var i=1; i <= 350; i++) {
+  total += Math.pow(POWER_POW, i) * POWER_MULTIPLY
+  powertotals.push({
+    level: i,
+    total: total
+  })
+  powerlevels[i] = total
+}
+powertotals.reverse() // store from highest to lowest
+
+
+var ScreepsUtils = {
+  gclToControlPoints: function(gcl) {
+    return Math.pow(gcl - 1, GCL_POW) * GCL_MULTIPLY;
+  },
+
+  controlPointsToGcl: function(points) {
+    return Math.floor(Math.pow(points / GCL_MULTIPLY, 1 / GCL_POW) + 1);
+  },
+
+  powerToLevel: function (power) {
+    if(power <= 0) {
+
+    }
+    for(var powerdata of powertotals) {
+      if(powerdata.total < power) {
+        return powerdata.level
+      }
+    }
+    return false
+  },
+
+  powerAtLevel: function (level) {
+    return powerlevels[level]
+  },
+
+  powerToNextLevel: function (level) {
+    return Math.pow(POWER_POW, level) * POWER_MULTIPLY
+  }
+}
+
 function gz (data) {
   let buf = new Buffer(data.slice(3), 'base64')
   let zlib = require('zlib')
@@ -407,6 +482,6 @@ function inflate (data) {
   return JSON.parse(ret)
 }
 
-
-
-module.exports = new ScreepsAPI({})
+var api = new ScreepsAPI({})
+api.utils = ScreepsUtils
+module.exports = api

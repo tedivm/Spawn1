@@ -51,7 +51,7 @@ exports.signIn = function() {
         //indicator.busy = false
         page.bindingContext["activity"] = false
         frames.topmost().navigate({
-          'moduleName': "views/home/home",
+          'moduleName': "views/profile/profile",
           'clearHistory': true
         });
       })

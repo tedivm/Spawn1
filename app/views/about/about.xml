@@ -2,7 +2,8 @@
   xmlns:widgets="shared/widgets"
   xmlns:drawer="nativescript-telerik-ui/sidedrawer"
   navigatingTo="pageLoaded"
-  id="home">
+  class="page"
+  id="about">
 
   <Page.actionBar>
     <widgets:header />
@@ -13,14 +14,21 @@
     <!-- The main content -->
     <drawer:RadSideDrawer.mainContent>
         <StackLayout orientation="vertical">
-          <Label text="{{ 'Username: ' + username }}" />
-          <Label text="{{ 'GCL: ' + gcl }}" />
-          <Label text="{{ 'Alliance: ' + alliance }}" onTap="loadAlliancePage"/>
-          <Label text="{{ 'Rooms: ' + roomCount }}" />
-          <Label text="{{ 'Credits: ' + money }}" />
-          <Label text="{{ 'Control Rank: ' + controlRank }}" />
-          <Label text="{{ 'Power Rank: ' + powerRank }}" />
-          <Label text="{{ 'Power Total: ' + power }}" />
+          <Label text="" class=""/>
+          <Label text="Spawn1 is an Open Source (MIT License) mobile client for Screeps."
+            class="body"
+            textWrap="true"
+            />
+          <Label
+            text="Screeps is the world's first MMO strategy sandbox game for programmers"
+            class="weblink body"
+            textWrap="true"
+            onTap="goToScreeps"
+            />
+          <Label text="Visit us on Github!"
+            class="weblink body"
+            onTap="goToGithub"
+            />
         </StackLayout>
     </drawer:RadSideDrawer.mainContent>
 

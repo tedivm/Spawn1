@@ -1,0 +1,45 @@
+<Page
+  xmlns:widgets="shared/widgets"
+  xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+  xmlns:IC="nativescript-web-image-cache"
+  navigatingTo="pageLoaded"
+  class="page"
+  id="profile">
+
+  <Page.actionBar>
+    <widgets:header />
+  </Page.actionBar>
+
+  <drawer:RadSideDrawer id="drawer" drawerLocation="Left" drawerContentSize="170">
+
+    <!-- The main content -->
+    <drawer:RadSideDrawer.mainContent>
+      <StackLayout>
+        <ScrollView orientation="vertical">
+          <StackLayout orientation="vertical" id='profile_list'>
+            <GridLayout columns="100,*" rows="*" class="user_header">
+              <IC:WebImage src="{{ badge_url }}" class="badge" height="100" col="0"/>
+              <GridLayout col="1" columns="*" rows="auto,*">
+                <Label text="{{ username }}" class="h2 center" col="1" row="0"/>
+                <Label text="{{ alliance_name }}" onTap="loadAlliancePage" class="h5 center" col="1" row="1"/>
+              </GridLayout>
+            </GridLayout>
+            <Label text="{{ 'Credits: ' + money }}" onTap="loadWalletPage" />
+            <Label text="{{ 'GCL: ' + gcl + ' (' + gcl_progress_string + '/' + gcl_progressTotal_string + ')' }}" />
+            <Label text="{{ 'Control Rank: ' + controlRank }}" />
+            <Label text="{{ 'Power Level: ' + power_level + ' (' + power_progress_string + '/' + power_progressTotal_string + ')' }}" />
+            <Label text="{{ 'Power Rank: ' + powerRank }}" />
+            <Label text="{{ 'Rooms: ' + roomCount }}" />
+          </StackLayout>
+        </ScrollView>
+      </StackLayout>
+    </drawer:RadSideDrawer.mainContent>
+
+    <!-- The drawer content -->
+    <drawer:RadSideDrawer.drawerContent>
+      <widgets:navigation />
+    </drawer:RadSideDrawer.drawerContent>
+
+  </drawer:RadSideDrawer>
+
+</Page>

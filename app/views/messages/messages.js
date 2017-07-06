@@ -20,6 +20,7 @@ var page;
 var drawer;
 var conversationTimerID = false
 
+var refreshTime = 2 // minutes
 
 function loadMessages () {
   return ScreepsAPI.messages()
@@ -43,6 +44,7 @@ function loadMessages () {
         conversation['message']['rusername'] = username_mapping[conversation['message']['respondent']]
         var date = new Date(conversation['message']['date']);
         conversation['message']['date_locale'] = date.toLocaleString()
+        conversation['message']['badge_url'] = League.getBadgeUrl(conversation['message']['rusername'])
       }
       return data
     })
@@ -76,7 +78,7 @@ exports.pageLoaded = function(args) {
   pageData.set("conversations", items);
   conversationTimerID = timer.setInterval(function(){
     loadMessages()
-  }, (1000 * 45))
+  }, (1000 * 60 * refreshTime))
 };
 
 exports.composeMessage = function (args) {
